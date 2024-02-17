@@ -6,7 +6,7 @@
 #    By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/16 21:42:20 by yugao             #+#    #+#              #
-#    Updated: 2024/02/17 07:41:15 by yugao            ###   ########.fr        #
+#    Updated: 2024/02/17 08:05:43 by yugao            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,6 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 
-re:fclean re
+re:fclean all
 
 .PHONY: fclean clean 	
