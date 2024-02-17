@@ -6,7 +6,7 @@
 /*   By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 21:42:17 by yugao             #+#    #+#             */
-/*   Updated: 2024/02/17 08:11:17 by yugao            ###   ########.fr       */
+/*   Updated: 2024/02/17 15:44:54 by yugao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ int main(void)
     void *mlx;
     void *win;
     void *img;
-    int img_width, img_height;
+	int  width = 100;
+	int  height = 100; 
 
     // 初始化MinilibX并创建窗口
     mlx = mlx_init();
@@ -39,11 +40,11 @@ int main(void)
 
     // 加载图片
     // 确保图片路径正确，且图片格式为XPM
-    img = mlx_xpm_file_to_image(mlx, "path/to/your/image.xpm", &img_width, &img_height);
+    img = mlx_xpm_file_to_image(mlx, "/Users/yugao/Desktop/download.xpm", &width, &height);
 
     // 如果加载成功，将图片放置到窗口中
     if (img != NULL) {
-        mlx_put_image_to_window(mlx, win, img, 0, 0);
+        mlx_put_image_to_window(mlx, win, img, 700, 500);
     }
 
     // 进入事件循环
