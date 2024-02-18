@@ -6,7 +6,7 @@
 /*   By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 21:39:58 by yugao             #+#    #+#             */
-/*   Updated: 2024/02/17 07:21:56 by yugao            ###   ########.fr       */
+/*   Updated: 2024/02/19 00:11:09 by yugao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,5 @@
 # include <unistd.h>
 # include <limits.h>
 # include <string.h>
-# include "./minilibx_opengl_20191021/mlx.h"
+# include "./minilibx/mlx.h"
 #endif
