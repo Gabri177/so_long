@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-CFILE = so_long_main.c draw.c
+CFILE = so_long_main.c draw.c matrix.c
 OFILE = $(CFILE:.c=.o)
 CFLAG = -Wall -Wextra -Werror
 LDFLAGS = -framework OpenGL -framework AppKit

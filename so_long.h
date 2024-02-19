@@ -45,6 +45,17 @@ typedef struct s_data
 	int		n_mov;
 }	t_data;
 
+typedef struct s_node
+{
+	char			obj;
+	int				x;
+	int				y;
+	int				stp;
+	struct s_node	*nx;
+}	t_node;
+
+typedef t_node*** t_ary;
+
 t_bool	dw_bk(t_data info);
 t_bool	dw_ctr(t_data *info, int x, int y);
 t_bool	dw_mov(t_data *i, int x, int y);
