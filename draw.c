@@ -1,29 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long_main.c                                     :+:      :+:    :+:   */
+/*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/16 21:42:17 by yugao             #+#    #+#             */
-/*   Updated: 2024/02/19 01:33:27 by yugao            ###   ########.fr       */
+/*   Created: 2024/02/19 01:06:01 by yugao             #+#    #+#             */
+/*   Updated: 2024/02/19 01:32:24 by yugao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	main(void)
+t_bool	dw_bk(void *mlx, void *win, int len, int wid)
 {
-	void	*mlx;
-	void	*win;
-	int		len;
-	int		high;
+	int		i;
+	int		j;
+	int		h;
+	int		w;
+	void	*img;
 
-	len = 10;
-	high = 3;
-	mlx = mlx_init();
-	win = mlx_new_window(mlx, len * UNIDAD, high * UNIDAD, "MinilibX Window");
-	dw_bk (mlx, win, len, high);
-	mlx_loop(mlx);
-	return (0);
+	i = 0;
+	j = 0;
+	h = 50;
+	w = 50;
+	img = mlx_xpm_file_to_image (mlx, IMAG_BK, &h, &w);
+	if (!img)
+		return (FALSE);
+	while (i < len)
+	{
+		j = 0;
+		while (j < wid)
+		{
+			mlx_put_image_to_window(mlx, win, img, i * UNIDAD, j * UNIDAD);
+			j ++;
+		}
+		i ++;
+	}
+	mlx_destroy_image (mlx, img);
+	return (TRUE);
 }
