@@ -6,7 +6,7 @@
 /*   By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 21:39:58 by yugao             #+#    #+#             */
-/*   Updated: 2024/02/19 20:03:01 by yugao            ###   ########.fr       */
+/*   Updated: 2024/02/19 22:48:57 by yugao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <unistd.h>
 # include <limits.h>
 # include <string.h>
+# include <fcntl.h>
+
 # include "./minilibx/mlx.h"
 # include "./libft/libft.h"
 
@@ -26,6 +28,12 @@
 # define IMAG_WAL "./img/wall.xpm"
 # define IMAG_CTR "./img/person.xpm"
 # define IMAG_BK "./img/bk.xpm"
+
+# define ERR_IMG 1
+# define ERR_FIL 2
+# define ERR_ARG 3
+# define ERR_RED 4
+# define ERR_NOM 5
 
 # define UNI 50
 
@@ -54,12 +62,24 @@ typedef struct s_node
 
 typedef t_node***	t_ary;
 
+//--------draw---------
 t_bool	dw_bk(t_data info);
 t_bool	dw_ctr(t_data *info, int x, int y);
 t_bool	dw_mov(t_data *i, int x, int y);
 
 
+//--------matrix-------
 t_bool	m_init(t_ary *l, t_data info);
 void	m_print(t_ary l, t_data info);
 t_bool	m_clr(t_ary *m, t_data info);
+
+//--------error_control-----------
+void	e_exit(int tp);
+
+//--------read_file---------------
+int		r_fd(char *dir);
+t_bool	r_size(t_data *info, int fd);
+
+//--------main---------
+void	info_init(t_data *info);
 #endif

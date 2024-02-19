@@ -6,7 +6,7 @@
 /*   By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 01:06:01 by yugao             #+#    #+#             */
-/*   Updated: 2024/02/19 02:27:37 by yugao            ###   ########.fr       */
+/*   Updated: 2024/02/19 22:35:59 by yugao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ t_bool	dw_bk(t_data info)
 	j = 0;
 	if (!info.img_bk)
 		return (FALSE);
-	while (i < info.win_x)
+	while (i * UNI < info.win_x)
 	{
 		j = 0;
-		while (j < info.win_y)
+		while (j * UNI < info.win_y)
 		{
 			mlx_put_image_to_window(info.mlx,
 				info.win, info.img_bk, i * UNI, j * UNI);

@@ -6,19 +6,20 @@
 /*   By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 21:42:17 by yugao             #+#    #+#             */
-/*   Updated: 2024/02/19 19:57:54 by yugao            ###   ########.fr       */
+/*   Updated: 2024/02/19 23:02:02 by yugao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	info_init(t_data *info, int wx, int wy)
+//info_init使用前必须运行r_size使得窗口大小能够更新到info变量中 否则会出错
+void	info_init(t_data *info)
 {
 	info->mlx = mlx_init();
-	info->win_x = wx * UNI;
-	info->win_y = wy * UNI;
-	info->win = mlx_new_window(info->mlx, wx * UNI,
-			wy * UNI, "MinilibX Window");
+	//info->win_x = wx * UNI;
+	//info->win_y = wy * UNI;
+	info->win = mlx_new_window(info->mlx, info->win_x,
+			info->win_y, "MinilibX Window");
 	info->ctr_x = 0;
 	info->ctr_y = 0;
 	info->img_x = 50;
@@ -37,26 +38,19 @@ void	info_init(t_data *info, int wx, int wy)
 	info->n_mov = 0;
 }
 
-// int	timer_handler(t_data *info)
-// {
-// 	int	g_i = 0;
-	
-// 	dw_mov(info, 1, g_i); // 更新窗口内容
-// 	g_i++;
-// 	if (g_i > 6)
-// 		g_i = 0;
-// 	return (0);
-// }
-
 int	main(void)
 {
 	t_data	info;
+	t_ary	mrx;
+	char	dir[] = "./maps/map1.ber";
 
-	info_init (&info, 5, 6);
+	r_size (&info, r_fd (dir)); //获取窗口大小将窗口大小数据更新到info中  先检查这玩意是不是方的
+	info_init (&info); // 初始化info变量中的其他内容
+	m_init (&mrx, info); // 创建一个横纵坐标的二位nodo的变量
 	dw_bk (info); // 画背景, 里面自动换算长度和位置 就是已经和UNIDAD进行过运算了;
 	//mlx_loop_hook(info.mlx, (int (*)())timer_handler, &info);
-	
 	dw_mov(&info, 0, 1);
+	//dw_mov(&info, 1, 1);
 	/* for (int i = 0; i < 6; i++)
 	{
 	 	usleep (1000000);
@@ -67,6 +61,6 @@ int	main(void)
 	 		i = 0;
 	} */
 	mlx_loop (info.mlx);
-	dw_ctr (&info, 1, 1);
+	m_clr (&mrx, info);
 	return (0);
 }
