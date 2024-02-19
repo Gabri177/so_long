@@ -6,7 +6,7 @@
 /*   By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 19:15:03 by yugao             #+#    #+#             */
-/*   Updated: 2024/02/19 19:39:42 by yugao            ###   ########.fr       */
+/*   Updated: 2024/02/20 00:52:39 by yugao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,16 @@ t_bool	m_init(t_ary *l, t_data info)
 	int	j;
 
 	i = 0;
-	*l = (t_node ***) malloc (sizeof (t_node **) * info.win_x);
+	*l = (t_node ***) malloc (sizeof (t_node **) * info.win_x / UNI);
 	if (!(*l))
 		return (FALSE);
-	while (i < info.win_x)
+	while (i < info.win_x / UNI)
 	{
-		(*l)[i] = (t_node **) malloc (sizeof (t_node *) * info.win_y);
+		(*l)[i] = (t_node **) malloc (sizeof (t_node *) * info.win_y / UNI);
 		if (!(*l)[i])
 			return (FALSE);
 		j = 0;
-		while (j < info.win_y)
+		while (j < info.win_y / UNI)
 		{
 			(*l)[i][j] = (t_node *) malloc (sizeof (t_node));
 			if (!(*l)[i][j])
@@ -40,18 +40,21 @@ t_bool	m_init(t_ary *l, t_data info)
 	return (TRUE);
 }
 
-void	m_print(t_ary l, t_data info)
+void	m_print(t_ary l, t_data info, t_bool is_obj)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (i < info.win_y)
+	while (i < info.win_y / UNI)
 	{
 		j = 0;
-		while (j < info.win_x)
+		while (j < info.win_x / UNI)
 		{
-			printf ("  %d", l[j][i]->stp);
+			if (is_obj)
+				printf ("   %c", l[j][i]->obj);
+			else
+				printf ("   %d", l[j][i]->stp);
 			j ++;
 		}
 		printf ("\n");
@@ -67,10 +70,10 @@ t_bool	m_clr(t_ary *m, t_data info)
 	i = 0;
 	if (!m)
 		return (FALSE);
-	while (i < info.win_x)
+	while (i < info.win_x / UNI)
 	{
 		j = 0;
-		while (j < info.win_y)
+		while (j < info.win_y / UNI)
 		{
 			free ((*m)[i][j]);
 			j ++;
@@ -78,7 +81,7 @@ t_bool	m_clr(t_ary *m, t_data info)
 		i ++;
 	}
 	i = 0;
-	while (i < info.win_x)
+	while (i < info.win_x / UNI)
 	{
 		free ((*m)[i]);
 		i ++;

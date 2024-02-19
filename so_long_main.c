@@ -6,7 +6,7 @@
 /*   By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 21:42:17 by yugao             #+#    #+#             */
-/*   Updated: 2024/02/19 23:02:02 by yugao            ###   ########.fr       */
+/*   Updated: 2024/02/20 00:53:33 by yugao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,13 @@ int	main(void)
 {
 	t_data	info;
 	t_ary	mrx;
-	char	dir[] = "./maps/map1.ber";
+	char	dir[] = "./maps/map2.ber";
 
 	r_size (&info, r_fd (dir)); //获取窗口大小将窗口大小数据更新到info中  先检查这玩意是不是方的
 	info_init (&info); // 初始化info变量中的其他内容
 	m_init (&mrx, info); // 创建一个横纵坐标的二位nodo的变量
+	r_to_mrx (info, r_fd (dir), &mrx);
+	m_print (mrx, info, TRUE);
 	dw_bk (info); // 画背景, 里面自动换算长度和位置 就是已经和UNIDAD进行过运算了;
 	//mlx_loop_hook(info.mlx, (int (*)())timer_handler, &info);
 	dw_mov(&info, 0, 1);
@@ -60,7 +62,8 @@ int	main(void)
 	 	if (i == 5)
 	 		i = 0;
 	} */
-	mlx_loop (info.mlx);
 	m_clr (&mrx, info);
+	mlx_loop (info.mlx);
+	
 	return (0);
 }

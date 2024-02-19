@@ -6,7 +6,7 @@
 /*   By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:07:16 by yugao             #+#    #+#             */
-/*   Updated: 2024/02/19 22:51:18 by yugao            ###   ########.fr       */
+/*   Updated: 2024/02/20 00:49:14 by yugao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,3 +62,25 @@ t_bool	r_size(t_data *info, int fd)
 	return (TRUE);
 }
 
+t_bool	r_to_mrx(t_data info, int fd, t_ary *m)
+{
+	int		x;
+	int		y;
+	char	*line;
+
+	y = 0;
+	while (y < info.win_y / UNI)
+	{
+		line = get_next_line (fd);
+		if (!line)
+			e_exit (ERR_RED);
+		x = 0;
+		while (x < info.win_x / UNI)
+		{
+			(*m)[x][y]->obj = line[x];
+			x ++;
+		}
+		y ++;
+	}
+	return (TRUE);
+}

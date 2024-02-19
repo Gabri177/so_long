@@ -6,7 +6,7 @@
 /*   By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 21:39:58 by yugao             #+#    #+#             */
-/*   Updated: 2024/02/19 22:48:57 by yugao            ###   ########.fr       */
+/*   Updated: 2024/02/20 00:51:45 by yugao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ t_bool	dw_mov(t_data *i, int x, int y);
 
 //--------matrix-------
 t_bool	m_init(t_ary *l, t_data info);
-void	m_print(t_ary l, t_data info);
+void	m_print(t_ary l, t_data info, t_bool is_obj);
 t_bool	m_clr(t_ary *m, t_data info);
 
 //--------error_control-----------
@@ -79,6 +79,7 @@ void	e_exit(int tp);
 //--------read_file---------------
 int		r_fd(char *dir);
 t_bool	r_size(t_data *info, int fd);
+t_bool	r_to_mrx(t_data info, int fd, t_ary *m);
 
 //--------main---------
 void	info_init(t_data *info);
