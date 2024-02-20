@@ -6,7 +6,7 @@
 /*   By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:07:16 by yugao             #+#    #+#             */
-/*   Updated: 2024/02/20 04:32:59 by yugao            ###   ########.fr       */
+/*   Updated: 2024/02/20 12:36:11 by yugao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	r_fd(char *dir)
 	return (fd);
 }
 
-static size_t	r_len(char *str)
+static size_t	r_len(char *str) // +++++++加一个字符判定
 {
 	int	i;
 
