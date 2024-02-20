@@ -6,7 +6,7 @@
 /*   By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:07:16 by yugao             #+#    #+#             */
-/*   Updated: 2024/02/20 00:49:14 by yugao            ###   ########.fr       */
+/*   Updated: 2024/02/20 02:20:55 by yugao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,11 @@ t_bool	r_size(t_data *info, int fd)
 	while (line)
 	{
 		line = get_next_line (fd);
-		if (!line)
+		if (!line || *line == '\n')
 			break ;
 		if (r_len (line) != w)
 			e_exit (ERR_NOM);
+		free (line);
 		h ++;
 	}
 	info->win_x = w * UNI;
@@ -62,25 +63,28 @@ t_bool	r_size(t_data *info, int fd)
 	return (TRUE);
 }
 
-t_bool	r_to_mrx(t_data info, int fd, t_ary *m)
+t_bool	r_to_mrx(t_data *info, int fd, t_ary *m)
 {
 	int		x;
 	int		y;
 	char	*line;
 
 	y = 0;
-	while (y < info.win_y / UNI)
+	while (y < info->win_y / UNI)
 	{
 		line = get_next_line (fd);
 		if (!line)
 			e_exit (ERR_RED);
 		x = 0;
-		while (x < info.win_x / UNI)
+		while (x < info->win_x / UNI)
 		{
 			(*m)[x][y]->obj = line[x];
 			x ++;
 		}
+		free (line);
 		y ++;
 	}
+	close (fd);
+	m_check (*m, info); // 这里我们检查 四个边是不是都是1 以及是否存在出口和角色
 	return (TRUE);
 }

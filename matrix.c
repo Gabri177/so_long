@@ -6,7 +6,7 @@
 /*   By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 19:15:03 by yugao             #+#    #+#             */
-/*   Updated: 2024/02/20 00:52:39 by yugao            ###   ########.fr       */
+/*   Updated: 2024/02/20 03:05:42 by yugao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,58 @@ t_bool	m_clr(t_ary *m, t_data info)
 	}
 	free (*m);
 	return (TRUE);
+}
+
+t_bool	m_check(t_ary m, t_data *info)
+{
+	int	i;
+
+	i = 0;
+	while (i < info->win_x / UNI)
+	{
+		if (m[i][0]->obj != '1' || m[i][info->win_y / UNI - 1]->obj != '1')
+			e_exit (ERR_MAP);
+		i ++;
+	}
+	i = 0;
+	while (i < info->win_y / UNI)
+	{
+		if (m[0][i]->obj != '1' || m[info->win_x / UNI - 1][i]->obj != '1')
+			e_exit (ERR_MAP);
+		i ++;
+	}
+	if (!m_grep(m, *info, 'E') || !m_grep(m, *info, 'P'))
+		e_exit (ERR_MAP);
+	info->ctr_x = m_grep(m, *info, 'P')->x; // 这里更新了人物初始的坐标位置
+	info->ctr_y = m_grep(m, *info, 'P')->y;
+	//printf ("check : x :%d, y: %d\n", info->ctr_x, info->ctr_y);
+	return (TRUE);
+}
+
+t_pos	*m_grep(t_ary m, t_data info, char c) // 返回第一个找到的对应值的坐标
+{
+	int		i;
+	int		j;
+	t_pos	*tem;
+
+	i = 0;
+	tem = (t_pos *) malloc (sizeof (t_pos));
+	if (!tem)
+		e_exit (ERR_MEM);
+	while (i < info.win_y / UNI)
+	{
+		j = 0;
+		while (j < info.win_x / UNI)
+		{
+			tem->x = j;
+			tem->y = i;
+			if (m[j][i]->obj == c)
+				return (tem);
+			j ++;
+		}
+		i ++;
+	}
+	return (NULL);
 }
 
 /* int	main(void)
