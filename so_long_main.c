@@ -6,7 +6,7 @@
 /*   By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 21:42:17 by yugao             #+#    #+#             */
-/*   Updated: 2024/02/20 04:38:06 by yugao            ###   ########.fr       */
+/*   Updated: 2024/02/20 04:39:01 by yugao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,10 @@ int	main(void)
 	dw_mov(&info, info.ctr_x, info.ctr_y, &mrx);
 	printf("move: %d \n", info.n_mov);
 	
-	dw_mov(&info, info.ctr_x + 1, info.ctr_y, &mrx);
-	printf("move: %d \n", info.n_mov);
-	dw_mov(&info, info.ctr_x + 1, info.ctr_y, &mrx);
-	printf("move: %d \n", info.n_mov);
+	// dw_mov(&info, info.ctr_x + 1, info.ctr_y, &mrx);
+	// printf("move: %d \n", info.n_mov);
+	// dw_mov(&info, info.ctr_x + 1, info.ctr_y, &mrx);
+	// printf("move: %d \n", info.n_mov);
 	
 	m_clr (&mrx, info); // 释放数组占用的内存
 	mlx_loop (info.mlx);
