@@ -6,7 +6,7 @@
 /*   By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 01:06:01 by yugao             #+#    #+#             */
-/*   Updated: 2024/02/20 03:42:18 by yugao            ###   ########.fr       */
+/*   Updated: 2024/02/20 20:43:58 by yugao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ t_bool	dw_mov(t_data *i, int x, int y, t_ary *m) // 目前没有检测机制 比
 	if (!dw_ctr (i, x, y))
 		return (FALSE);
 	i->n_mov ++;
+	printf("move: %d \n", i->n_mov);
 	return (TRUE);
 }
 

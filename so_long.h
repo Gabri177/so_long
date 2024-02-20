@@ -6,7 +6,7 @@
 /*   By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 21:39:58 by yugao             #+#    #+#             */
-/*   Updated: 2024/02/20 04:32:21 by yugao            ###   ########.fr       */
+/*   Updated: 2024/02/20 20:40:07 by yugao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@
 # define ERR_MAP 6
 # define ERR_MEM 7
 # define ERR_NOWAY 8
+# define ERR_CHA 9
 
 # define UNI 50
 

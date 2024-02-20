@@ -6,7 +6,7 @@
 /*   By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 21:42:17 by yugao             #+#    #+#             */
-/*   Updated: 2024/02/20 04:53:34 by yugao            ###   ########.fr       */
+/*   Updated: 2024/02/20 20:45:26 by yugao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	main(void)
 {
 	t_data	info;
 	t_ary	mrx;
-	char	dir[] = "./maps/map2.ber";
+	char	dir[] = "./maps/map1.ber";
 
 	r_size (&info, r_fd (dir)); //获取窗口大小将窗口大小数据更新到info中  先检查这玩意是不是方的
 	info_init (&info); // 初始化info变量中的其他内容
@@ -56,12 +56,9 @@ int	main(void)
 	//mlx_loop_hook(info.mlx, (int (*)())timer_handler, &info);
 	//printf ("x :%d, y: %d\n", info.ctr_x, info.ctr_y);
 	dw_mov(&info, info.ctr_x, info.ctr_y, &mrx);
-	printf("move: %d \n", info.n_mov);
 	
-	// dw_mov(&info, info.ctr_x + 1, info.ctr_y, &mrx);
-	// printf("move: %d \n", info.n_mov);
-	// dw_mov(&info, info.ctr_x + 1, info.ctr_y, &mrx);
-	// printf("move: %d \n", info.n_mov);
+	dw_mov(&info, info.ctr_x + 1, info.ctr_y, &mrx);
+	dw_mov(&info, info.ctr_x + 1, info.ctr_y, &mrx);
 	
 	m_clr (&mrx, info); // 释放数组占用的内存
 	mlx_loop (info.mlx);

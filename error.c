@@ -6,7 +6,7 @@
 /*   By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:24:36 by yugao             #+#    #+#             */
-/*   Updated: 2024/02/20 04:34:13 by yugao            ###   ########.fr       */
+/*   Updated: 2024/02/20 20:40:46 by yugao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,7 @@ void	e_exit(int tp)
 		perror ("Error: Malloc unsuccessfully!\n");
 	else if (tp == ERR_NOWAY)
 		perror ("Error: There is no way out!\n");
+	else if (tp == ERR_CHA)
+		perror ("Error: Ilegal character en map!\n");
 	exit (1);
 }

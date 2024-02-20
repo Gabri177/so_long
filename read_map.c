@@ -6,7 +6,7 @@
 /*   By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:07:16 by yugao             #+#    #+#             */
-/*   Updated: 2024/02/20 12:36:11 by yugao            ###   ########.fr       */
+/*   Updated: 2024/02/20 20:40:58 by yugao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,28 @@ int	r_fd(char *dir)
 	return (fd);
 }
 
-static size_t	r_len(char *str) // +++++++加一个字符判定
+static t_bool	r_str_leg(char *str)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < ft_strlen (str))
+	{
+		if (str[i] != '1' && str[i] != '0' && str[i] != 'P'
+			&& str[i] != 'C' && str[i] != 'E' && str[i] != '\n')
+			return (FALSE);
+		i ++;
+	}
+	return (TRUE);
+}
+
+static size_t	r_len(char *str) // +++++++看看有没有非法字符
 {
 	int	i;
 
 	i = 0;
+	if (!r_str_leg (str))
+		e_exit (ERR_CHA);
 	while (str[i])
 	{
 		if (str[i] == '\n')
@@ -46,6 +63,7 @@ t_bool	r_size(t_data *info, int fd)
 	if (!line)
 		e_exit (ERR_RED);
 	w = r_len (line);
+	printf ("len : %zu \n", w);
 	h ++;
 	while (line)
 	{
