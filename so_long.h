@@ -6,7 +6,7 @@
 /*   By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 21:39:58 by yugao             #+#    #+#             */
-/*   Updated: 2024/02/20 02:58:50 by yugao            ###   ########.fr       */
+/*   Updated: 2024/02/20 03:28:01 by yugao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ typedef struct s_pos
 //--------draw---------
 t_bool	dw_bk(t_data info, t_ary m);
 t_bool	dw_ctr(t_data *info, int x, int y);
-t_bool	dw_mov(t_data *i, int x, int y, t_ary m);
+t_bool	dw_mov(t_data *i, int x, int y, t_ary *m);
 
 //--------matrix-------
 t_bool	m_init(t_ary *l, t_data info);
