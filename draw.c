@@ -6,7 +6,7 @@
 /*   By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 01:06:01 by yugao             #+#    #+#             */
-/*   Updated: 2024/02/20 20:43:58 by yugao            ###   ########.fr       */
+/*   Updated: 2024/02/20 22:59:19 by yugao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,15 @@ static t_bool	dw_wall(t_data info, t_ary m) //这里进行墙的绘制出口 和
 			if (m[j][i]->obj == 'C')
 				mlx_put_image_to_window(info.mlx,
 					info.win, info.img_coin, j * UNI, i * UNI); //金币
+			if (m[j][i]->obj == 'E')
+				mlx_put_image_to_window(info.mlx,
+					info.win, info.img_exit, j * UNI, i * UNI); //出口
 			j ++;
 		}
 		i ++;
 	}
-	mlx_put_image_to_window(info.mlx, info.win, info.img_exit,
-		m_grep(m, info, 'E')->x * UNI, m_grep(m, info, 'E')->y * UNI); //将出口画出来
+	/* mlx_put_image_to_window(info.mlx, info.win, info.img_exit,
+		m_grep(m, info, 'E')->x * UNI, m_grep(m, info, 'E')->y * UNI); //将出口画出来 */
 	return (TRUE);
 }
 
@@ -83,7 +86,7 @@ t_bool	dw_canmov(t_data *i, t_ary m, int x, int y)
 	if (m[x][y]->obj == '0' || m[x][y]->obj == 'C' || m[x][y]->obj == 'P') // 如果是小人位置 金币位置 空位置 可以以移动
 		return (TRUE);
 	if (!m_grep(m, *i, 'C') && m[x][y]->obj == 'E') // 如果金币吃光了 可以移动到出口
-		return (TRUE);
+		s_exit (SCS_WIN);
 	return (FALSE);
 }
 

@@ -6,7 +6,7 @@
 /*   By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 21:39:58 by yugao             #+#    #+#             */
-/*   Updated: 2024/02/20 20:40:07 by yugao            ###   ########.fr       */
+/*   Updated: 2024/02/20 22:35:19 by yugao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,17 @@
 # define ERR_NOWAY 8
 # define ERR_CHA 9
 
+# define SCS_WIN 1
+# define SCS_EXE 0
 # define UNI 50
 
 typedef int			t_bool;
+typedef struct s_node
+{
+	char			obj;
+	int				stp;
+}					t_node;
+typedef t_node***	t_ary;
 typedef struct s_data
 {
 	void	*mlx;
@@ -60,15 +68,8 @@ typedef struct s_data
 	int		ctr_x;
 	int		ctr_y;
 	int		n_mov;
+	t_ary	mrx;
 }					t_data;
-
-typedef struct s_node
-{
-	char			obj;
-	int				stp;
-}					t_node;
-
-typedef t_node***	t_ary;
 
 typedef struct s_pos
 {
@@ -93,7 +94,7 @@ void	m_can_out(t_ary *m, int x, int y);
 void	m_check_out(t_ary l, t_data info);
 //--------error_control-----------
 void	e_exit(int tp);
-
+void	s_exit(int tp);
 //--------read_file---------------
 int		r_fd(char *dir);
 t_bool	r_size(t_data *info, int fd);

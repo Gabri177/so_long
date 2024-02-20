@@ -6,7 +6,7 @@
 /*   By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:24:36 by yugao             #+#    #+#             */
-/*   Updated: 2024/02/20 20:40:46 by yugao            ###   ########.fr       */
+/*   Updated: 2024/02/20 22:35:26 by yugao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,12 @@ void	e_exit(int tp)
 	else if (tp == ERR_CHA)
 		perror ("Error: Ilegal character en map!\n");
 	exit (1);
+}
+
+void	s_exit(int tp)
+{
+	if (tp == SCS_WIN)
+		printf ("You Win !\n");
+	//eles if (tp == SCS_EXE)
+	exit (0);	
 }

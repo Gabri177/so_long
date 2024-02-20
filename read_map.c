@@ -6,7 +6,7 @@
 /*   By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:07:16 by yugao             #+#    #+#             */
-/*   Updated: 2024/02/20 20:40:58 by yugao            ###   ########.fr       */
+/*   Updated: 2024/02/20 22:54:32 by yugao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ t_bool	r_size(t_data *info, int fd)
 	if (!line)
 		e_exit (ERR_RED);
 	w = r_len (line);
-	printf ("len : %zu \n", w);
 	h ++;
 	while (line)
 	{

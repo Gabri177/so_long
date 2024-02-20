@@ -6,7 +6,7 @@
 /*   By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 21:42:17 by yugao             #+#    #+#             */
-/*   Updated: 2024/02/20 20:45:26 by yugao            ###   ########.fr       */
+/*   Updated: 2024/02/20 23:09:57 by yugao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,27 +40,52 @@ void	info_init(t_data *info)
 	info->n_mov = -1;
 }
 
+int	key_hook(int key, void *param)
+{
+	t_data	*info;
+
+	info = (t_data *)param;
+	if (key == 13 || key == 126) //up
+		dw_mov(info, info->ctr_x, info->ctr_y - 1, &info->mrx);
+	if (key == 1 || key == 125) //down
+		dw_mov(info, info->ctr_x, info->ctr_y + 1, &info->mrx);
+	if (key == 0 || key == 123) //left
+		dw_mov(info, info->ctr_x - 1, info->ctr_y, &info->mrx);
+	if (key == 2 || key == 124) //right
+		dw_mov(info, info->ctr_x + 1, info->ctr_y, &info->mrx);
+	if (key == 53)
+		s_exit (SCS_EXE);
+	return (0);
+}
+
+int	cls_win(void *param)
+{
+	(void)param;
+	s_exit (SCS_EXE);
+	return (0);
+}
+
 int	main(void)
 {
 	t_data	info;
-	t_ary	mrx;
-	char	dir[] = "./maps/map1.ber";
+	char	dir[] = "./maps/map4.ber";
 
 	r_size (&info, r_fd (dir)); //获取窗口大小将窗口大小数据更新到info中  先检查这玩意是不是方的
 	info_init (&info); // 初始化info变量中的其他内容
-	m_init (&mrx, info); // 创建一个横纵坐标的二位nodo的变量
-	r_to_mrx (&info, r_fd (dir), &mrx); //将地图数据转换为2维度数组
-	m_print (mrx, info, TRUE); //打印数组的命令
-	m_print (mrx, info, FALSE);
+	m_init (&info.mrx, info); // 创建一个横纵坐标的二位nodo的变量
+	r_to_mrx (&info, r_fd (dir), &info.mrx); //将地图数据转换为2维度数组
+	//m_print (info.mrx, info, TRUE); //打印数组的命令
+	//m_print (info.mrx, info, FALSE);
 	//dw_bk (info, mrx); // 画背景, 里面自动换算长度和位置 就是已经和UNIDAD进行过运算了;
 	//mlx_loop_hook(info.mlx, (int (*)())timer_handler, &info);
 	//printf ("x :%d, y: %d\n", info.ctr_x, info.ctr_y);
-	dw_mov(&info, info.ctr_x, info.ctr_y, &mrx);
 	
-	dw_mov(&info, info.ctr_x + 1, info.ctr_y, &mrx);
-	dw_mov(&info, info.ctr_x + 1, info.ctr_y, &mrx);
-	
-	m_clr (&mrx, info); // 释放数组占用的内存
+	dw_mov(&info, info.ctr_x, info.ctr_y, &info.mrx);
+	/*dw_mov(&info, info.ctr_x + 1, info.ctr_y, &info.mrx);
+	dw_mov(&info, info.ctr_x + 1, info.ctr_y, &info.mrx); */
+	mlx_key_hook (info.win, key_hook, (void *)&info);
+	mlx_hook (info.win, 17, 0, cls_win, NULL);
+	//m_clr (&info.mrx, info); // 释放数组占用的内存
 	mlx_loop (info.mlx);
 	return (0);
 }
