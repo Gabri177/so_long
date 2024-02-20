@@ -6,7 +6,7 @@
 /*   By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 21:42:17 by yugao             #+#    #+#             */
-/*   Updated: 2024/02/20 03:38:26 by yugao            ###   ########.fr       */
+/*   Updated: 2024/02/20 04:38:06 by yugao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,15 +51,18 @@ int	main(void)
 	m_init (&mrx, info); // 创建一个横纵坐标的二位nodo的变量
 	r_to_mrx (&info, r_fd (dir), &mrx); //将地图数据转换为2维度数组
 	m_print (mrx, info, TRUE); //打印数组的命令
+	m_print (mrx, info, FALSE);
 	//dw_bk (info, mrx); // 画背景, 里面自动换算长度和位置 就是已经和UNIDAD进行过运算了;
 	//mlx_loop_hook(info.mlx, (int (*)())timer_handler, &info);
 	//printf ("x :%d, y: %d\n", info.ctr_x, info.ctr_y);
 	dw_mov(&info, info.ctr_x, info.ctr_y, &mrx);
 	printf("move: %d \n", info.n_mov);
-	// dw_mov(&info, info.ctr_x + 1, info.ctr_y, &mrx);
-	// printf("move: %d \n", info.n_mov);
-	// dw_mov(&info, info.ctr_x + 1, info.ctr_y, &mrx);
-	// printf("move: %d \n", info.n_mov);
+	
+	dw_mov(&info, info.ctr_x + 1, info.ctr_y, &mrx);
+	printf("move: %d \n", info.n_mov);
+	dw_mov(&info, info.ctr_x + 1, info.ctr_y, &mrx);
+	printf("move: %d \n", info.n_mov);
+	
 	m_clr (&mrx, info); // 释放数组占用的内存
 	mlx_loop (info.mlx);
 	return (0);

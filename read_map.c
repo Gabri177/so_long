@@ -6,7 +6,7 @@
 /*   By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:07:16 by yugao             #+#    #+#             */
-/*   Updated: 2024/02/20 02:20:55 by yugao            ###   ########.fr       */
+/*   Updated: 2024/02/20 04:32:59 by yugao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,8 @@ t_bool	r_to_mrx(t_data *info, int fd, t_ary *m)
 		y ++;
 	}
 	close (fd);
-	m_check (*m, info); // 这里我们检查 四个边是不是都是1 以及是否存在出口和角色
+	m_check (*m, info); // 这里我们检查 四个边是不是都是1 以及是否存在出口和角色 这里也给初始人物位置赋值
+	m_can_out (m, info->ctr_x, info->ctr_y);
+	m_check_out (*m, *info);
 	return (TRUE);
 }

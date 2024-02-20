@@ -6,11 +6,11 @@
 #    By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/16 21:42:20 by yugao             #+#    #+#              #
-#    Updated: 2024/02/20 00:13:53 by yugao            ###   ########.fr        #
+#    Updated: 2024/02/20 03:44:30 by yugao            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CFILE = so_long_main.c draw.c matrix.c read_map.c error.c
+CFILE = so_long_main.c draw.c matrix.c read_map.c error.c matrix2.c
 OFILE = $(CFILE:.c=.o)
 CFLAG = -Wall -Wextra -Werror
 LDFLAGS = -framework OpenGL -framework AppKit

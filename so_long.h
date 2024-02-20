@@ -6,7 +6,7 @@
 /*   By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 21:39:58 by yugao             #+#    #+#             */
-/*   Updated: 2024/02/20 03:43:29 by yugao            ###   ########.fr       */
+/*   Updated: 2024/02/20 04:32:21 by yugao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@
 # define ERR_NOM 5
 # define ERR_MAP 6
 # define ERR_MEM 7
+# define ERR_NOWAY 8
 
 # define UNI 50
 
@@ -86,6 +87,9 @@ void	m_print(t_ary l, t_data info, t_bool is_obj);
 t_bool	m_clr(t_ary *m, t_data info);
 t_bool	m_check(t_ary m, t_data *info);
 t_pos	*m_grep(t_ary m, t_data info, char c);
+
+void	m_can_out(t_ary *m, int x, int y);
+void	m_check_out(t_ary l, t_data info);
 //--------error_control-----------
 void	e_exit(int tp);
 
@@ -96,4 +100,5 @@ t_bool	r_to_mrx(t_data *info, int fd, t_ary *m);
 
 //--------main---------
 void	info_init(t_data *info);
+
 #endif

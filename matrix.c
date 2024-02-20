@@ -6,7 +6,7 @@
 /*   By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 19:15:03 by yugao             #+#    #+#             */
-/*   Updated: 2024/02/20 03:41:14 by yugao            ###   ########.fr       */
+/*   Updated: 2024/02/20 04:37:23 by yugao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	m_print(t_ary l, t_data info, t_bool is_obj)
 			if (is_obj)
 				printf ("   %c", l[j][i]->obj);
 			else
-				printf ("   %d", l[j][i]->stp);
+				printf ("\t%d", l[j][i]->stp);
 			j ++;
 		}
 		printf ("\n");
@@ -112,7 +112,6 @@ t_bool	m_check(t_ary m, t_data *info) //检查四周是不是1 有没有出口�
 		e_exit (ERR_MAP);
 	info->ctr_x = m_grep(m, *info, 'P')->x; // 这里更新了人物初始的坐标位置
 	info->ctr_y = m_grep(m, *info, 'P')->y;
-	//printf ("check : x :%d, y: %d\n", info->ctr_x, info->ctr_y);
 	return (TRUE);
 }
 
