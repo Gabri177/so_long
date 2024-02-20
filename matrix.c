@@ -6,7 +6,7 @@
 /*   By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 19:15:03 by yugao             #+#    #+#             */
-/*   Updated: 2024/02/20 03:05:42 by yugao            ###   ########.fr       */
+/*   Updated: 2024/02/20 03:41:14 by yugao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ t_bool	m_clr(t_ary *m, t_data info)
 	return (TRUE);
 }
 
-t_bool	m_check(t_ary m, t_data *info)
+t_bool	m_check(t_ary m, t_data *info) //检查四周是不是1 有没有出口和人物 金币不重要
 {
 	int	i;
 

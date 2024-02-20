@@ -6,7 +6,7 @@
 /*   By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 01:06:01 by yugao             #+#    #+#             */
-/*   Updated: 2024/02/20 03:38:55 by yugao            ###   ########.fr       */
+/*   Updated: 2024/02/20 03:42:18 by yugao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ t_bool	dw_ctr(t_data *info, int x, int y) //在指定位置绘制出人物
 }
 
 // 判断能否移动 参数是下一个想要到达的位置
-static t_bool	dw_canmov(t_data *i, t_ary m, int x, int y)
+t_bool	dw_canmov(t_data *i, t_ary m, int x, int y)
 {
 	if (m[x][y]->obj == '0' || m[x][y]->obj == 'C' || m[x][y]->obj == 'P') // 如果是小人位置 金币位置 空位置 可以以移动
 		return (TRUE);
