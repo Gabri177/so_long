@@ -101,7 +101,7 @@ t_bool	dw_mov(t_data *i, int x, int y, t_ary *m) // 目前没有检测机制 比
 	if (!dw_ctr (i, x, y))
 		return (FALSE);
 	i->n_mov ++;
-	printf("move: %d \n", i->n_mov);
+	ft_printf("move: %d \n", i->n_mov);
 	return (TRUE);
 }
 

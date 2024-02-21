@@ -52,12 +52,12 @@ void	m_print(t_ary l, t_data info, t_bool is_obj)
 		while (j < info.win_x / UNI)
 		{
 			if (is_obj)
-				printf ("   %c", l[j][i]->obj);
+				ft_printf ("   %c", l[j][i]->obj);
 			else
-				printf ("\t%d", l[j][i]->stp);
+				ft_printf ("\t%d", l[j][i]->stp);
 			j ++;
 		}
-		printf ("\n");
+		ft_printf ("\n");
 		i ++;
 	}
 }

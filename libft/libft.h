@@ -19,6 +19,7 @@
 # include <limits.h>
 # include <string.h>
 # include <unistd.h>
+# include <stdarg.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
@@ -86,5 +87,12 @@ char			*merge(char *str1, char *str2);
 char			*str_cp(char *str, size_t len);
 char			*get_next_line(int fd);
 char			*ft_free(char	**str);
+size_t			ft_putinbr_fd(unsigned int n, int fd);
+size_t			dec_to_hex(unsigned int num, int is_mayuscura);
+size_t			ft_print_pointer(void *ptr);
+int				is_c_legal(char c);
+size_t			count_arg(const char *str);
+size_t			asistant_print(int type, va_list arg);
+int				ft_printf(char const *str, ...);
 
 #endif
