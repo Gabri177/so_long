@@ -6,7 +6,7 @@
 #    By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/23 10:01:47 by yugao             #+#    #+#              #
-#    Updated: 2024/02/20 00:18:56 by yugao            ###   ########.fr        #
+#    Updated: 2024/02/21 20:25:53 by yugao            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ CFILE = ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c \
 		ft_strncmp.c ft_strnstr.c ft_strrchr.c ft_strtrim.c ft_substr.c \
 		ft_tolower.c ft_toupper.c get_next_line_bonus.c get_next_line_utils_bonus.c \
 		asistant_print.c count_arg.c dec_to_hex.c dec_to_hex.c ft_putinbr_fd.c \
-		is_c_legal.c
+		is_c_legal.c ft_printf.c
 OFILE = $(CFILE:%.c=%.o)
 HFILE = ./
 BONUS_FOLDER = ./_bonus
