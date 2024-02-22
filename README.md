@@ -1,5 +1,5 @@
 # so_long
-## un proyecto sobre un breve videojuego de 2D usando minilibx de la escuala 42##
+## un proyecto sobre un breve videojuego de 2D usando minilibx de la escuala 42
 ![so_long](https://github.com/Gabri177/so_long/assets/152025617/507ddca0-33f5-42e7-a118-0f4834dbaeb9)
 
 ## Tecnicas usadas
