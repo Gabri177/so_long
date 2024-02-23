@@ -2,7 +2,7 @@
 ![so_long](https://github.com/Gabri177/so_long/assets/152025617/507ddca0-33f5-42e7-a118-0f4834dbaeb9)
 
 ## Introduction
-**"So Long"** is a small 2D game project designed as part of the curriculum at 42 School. The main objective of this project is to introduce students to graphical programming and reinforce their skills in C programming, particularly in managing graphics, creating simple game logic, and handling user inputs. The game is built upon the principles of a classic tile-based game where the player must navigate through a map to reach an exit, collect items, and possibly avoid or interact with obstacles or enemies.
+&emsp;&emsp;**"So Long"** is a small 2D game project designed as part of the curriculum at 42 School. The main objective of this project is to introduce students to graphical programming and reinforce their skills in C programming, particularly in managing graphics, creating simple game logic, and handling user inputs. The game is built upon the principles of a classic tile-based game where the player must navigate through a map to reach an exit, collect items, and possibly avoid or interact with obstacles or enemies.
 
 ## Technical Stack
 **Programming Language**:    
@@ -63,18 +63,27 @@ Header Files: Includes all the header files (.h) defining structures, constants,
 Maps: A directory for game assets such as textures, sprites, maps, and sound effects (if applicable).
 Makefile: Contains rules for compiling the project, cleaning up object files, and fully recompiling the project.
 ## Features
-Map Parsing:   
+**Map Parsing**: 
+
 &emsp;&emsp;Load and parse game maps from a file, with the ability to customize maps for varied gameplay experiences.
 Graphics Rendering:      
 &emsp;&emsp;Utilize MiniLibX to render the game scene, including tiles, player character, collectibles, and exit.
-Player Movement:    
+
+**Player Movement**:      
+
 &emsp;&emsp;Handle keyboard inputs to move the player character through the map, collecting items and navigating to the exit.
 Collision Detection: Implement logic to detect collisions with walls, collectibles, and other game elements.
-Game Status:    
+
+**Game Status**:    
+
 &emsp;&emsp;Keep track of collectibles picked up and display game status, such as the number of moves or items collected.
-Exit Mechanism:    
+
+**Exit Mechanism**:    
+
 &emsp;&emsp;Allow the player to exit the game upon reaching the goal, after collecting all necessary items.
-**Getting Started**
+
+## Getting Started
+
 * Clone the Repository: Clone this project to your local machine using Git.
 ```
 git clone https://github.com/Gabri177/so_long
