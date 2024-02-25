@@ -6,13 +6,13 @@
 /*   By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 01:06:01 by yugao             #+#    #+#             */
-/*   Updated: 2024/02/20 22:59:19 by yugao            ###   ########.fr       */
+/*   Updated: 2024/02/23 19:36:22 by yugao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../header/so_long.h"
 
-static t_bool	dw_wall(t_data info, t_ary m) //这里进行墙的绘制出口 和 金币的绘制 都是对matrix进行遍历, 然后进行绘画;
+static t_bool	dw_wall(t_data info, t_ary m)
 {
 	int	i;
 	int	j;
@@ -27,23 +27,21 @@ static t_bool	dw_wall(t_data info, t_ary m) //这里进行墙的绘制出口 和
 		{
 			if (m[j][i]->obj == '1')
 				mlx_put_image_to_window(info.mlx,
-					info.win, info.img_wal, j * UNI, i * UNI); //墙
+					info.win, info.img_wal, j * UNI, i * UNI);
 			if (m[j][i]->obj == 'C')
 				mlx_put_image_to_window(info.mlx,
-					info.win, info.img_coin, j * UNI, i * UNI); //金币
+					info.win, info.img_coin, j * UNI, i * UNI);
 			if (m[j][i]->obj == 'E')
 				mlx_put_image_to_window(info.mlx,
-					info.win, info.img_exit, j * UNI, i * UNI); //出口
+					info.win, info.img_exit, j * UNI, i * UNI);
 			j ++;
 		}
 		i ++;
 	}
-	/* mlx_put_image_to_window(info.mlx, info.win, info.img_exit,
-		m_grep(m, info, 'E')->x * UNI, m_grep(m, info, 'E')->y * UNI); //将出口画出来 */
 	return (TRUE);
 }
 
-t_bool	dw_bk(t_data info, t_ary m) // 画出地图的背景 墙和出口和金币
+t_bool	dw_bk(t_data info, t_ary m)
 {
 	int		i;
 	int		j;
@@ -68,7 +66,7 @@ t_bool	dw_bk(t_data info, t_ary m) // 画出地图的背景 墙和出口和金�
 	return (TRUE);
 }
 
-t_bool	dw_ctr(t_data *info, int x, int y) //在指定位置绘制出人物
+t_bool	dw_ctr(t_data *info, int x, int y)
 {
 	if (!info->img_ctr)
 		return (FALSE);
@@ -80,28 +78,28 @@ t_bool	dw_ctr(t_data *info, int x, int y) //在指定位置绘制出人物
 	return (TRUE);
 }
 
-// 判断能否移动 参数是下一个想要到达的位置
 t_bool	dw_canmov(t_data *i, t_ary m, int x, int y)
 {
-	if (m[x][y]->obj == '0' || m[x][y]->obj == 'C' || m[x][y]->obj == 'P') // 如果是小人位置 金币位置 空位置 可以以移动
-		return (TRUE);
-	if (!m_grep(m, *i, 'C') && m[x][y]->obj == 'E') // 如果金币吃光了 可以移动到出口
+	if (!m_grep(m, *i, 'C') && m[x][y]->obj == 'E')
 		s_exit (SCS_WIN);
+	if (m[x][y]->obj == '0' || m[x][y]->obj == 'C' || m[x][y]->obj == 'P'
+		|| m[x][y]->obj == 'E')
+		return (TRUE);
 	return (FALSE);
 }
 
-t_bool	dw_mov(t_data *i, int x, int y, t_ary *m) // 目前没有检测机制 比如地图边缘 和 墙 
+t_bool	dw_mov(t_data *i, int x, int y, t_ary *m)
 {
 	if (!dw_canmov (i, *m, x, y))
 		return (FALSE);
-	if ((*m)[x][y]->obj == 'C') // 当遇到金币 上面的判断条件显示可以移动 那我们就将金币换成空白
+	if ((*m)[x][y]->obj == 'C')
 		(*m)[x][y]->obj = '0';
 	if (!dw_bk (*i, *m))
 		return (FALSE);
 	if (!dw_ctr (i, x, y))
 		return (FALSE);
 	i->n_mov ++;
-	ft_printf("move: %d \n", i->n_mov);
+	if (i->n_mov != 0)
+		ft_printf("move: %d \n", i->n_mov);
 	return (TRUE);
 }
-

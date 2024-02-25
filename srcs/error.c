@@ -6,32 +6,37 @@
 /*   By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:24:36 by yugao             #+#    #+#             */
-/*   Updated: 2024/02/20 22:35:26 by yugao            ###   ########.fr       */
+/*   Updated: 2024/02/23 19:36:27 by yugao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../header/so_long.h"
+
+static void	e_info_err(char *str)
+{
+	write (2, str, ft_strlen(str));
+}
 
 void	e_exit(int tp)
 {
 	if (tp == ERR_IMG)
-		perror ("Error: Load IMG error!\n");
+		e_info_err ("Error\n:Load IMG error!\n");
 	else if (tp == ERR_FIL)
-		perror ("Error: Please cheack if exist the file! \n");
+		e_info_err ("Error\n:Please cheack if exist the file! \n");
 	else if (tp == ERR_ARG)
-		perror ("Error: You have passed an argument invalid!\n");
+		e_info_err ("Error\n:You have passed an argument invalid!\n");
 	else if (tp == ERR_RED)
-		perror ("Error:Sorry, Read file failed! \n");
+		e_info_err ("Error\n:Sorry, Read file failed! \n");
 	else if (tp == ERR_NOM)
-		perror ("Error: The map is nos a square!\n");
+		e_info_err ("Error\n:The map is nos a square!\n");
 	else if (tp == ERR_MAP)
-		perror ("Error: The map is ilegal!\n");
+		e_info_err ("Error\n:The map is ilegal!\n");
 	else if (tp == ERR_MEM)
-		perror ("Error: Malloc unsuccessfully!\n");
+		e_info_err ("Error\n:Malloc unsuccessfully!\n");
 	else if (tp == ERR_NOWAY)
-		perror ("Error: There is no way out!\n");
+		e_info_err ("Error\n:There is no way out!\n");
 	else if (tp == ERR_CHA)
-		perror ("Error: Ilegal character en map!\n");
+		e_info_err ("Error\n:Ilegal character en map!\n");
 	exit (1);
 }
 
@@ -39,6 +44,5 @@ void	s_exit(int tp)
 {
 	if (tp == SCS_WIN)
 		printf ("You Win !\n");
-	//eles if (tp == SCS_EXE)
-	exit (0);	
+	exit (0);
 }

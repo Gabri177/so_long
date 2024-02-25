@@ -6,20 +6,20 @@
 /*   By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 03:44:33 by yugao             #+#    #+#             */
-/*   Updated: 2024/02/20 04:37:39 by yugao            ###   ########.fr       */
+/*   Updated: 2024/02/23 19:36:33 by yugao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../header/so_long.h"
 
 t_bool	canmov(t_ary m, int x, int y)
 {
-	if (m[x][y]->obj == '1' || m[x][y]->obj == 'P') // 如果金币吃光了 可以移动到出口
+	if (m[x][y]->obj == '1' || m[x][y]->obj == 'P')
 		return (FALSE);
 	return (TRUE);
 }
 
-void	m_can_out(t_ary *m, int x, int y) //瞎几把递归, 然后把能走的路都标注上步数在matrix中
+void	m_can_out(t_ary *m, int x, int y)
 {
 	if (canmov (*m, x + 1, y) && (*m)[x + 1][y]->stp == 0)
 	{

@@ -6,11 +6,11 @@
 /*   By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 19:15:03 by yugao             #+#    #+#             */
-/*   Updated: 2024/02/20 04:37:23 by yugao            ###   ########.fr       */
+/*   Updated: 2024/02/23 19:36:31 by yugao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../header/so_long.h"
 
 t_bool	m_init(t_ary *l, t_data info)
 {
@@ -90,7 +90,7 @@ t_bool	m_clr(t_ary *m, t_data info)
 	return (TRUE);
 }
 
-t_bool	m_check(t_ary m, t_data *info) //检查四周是不是1 有没有出口和人物 金币不重要
+t_bool	m_check(t_ary m, t_data *info)
 {
 	int	i;
 
@@ -108,14 +108,15 @@ t_bool	m_check(t_ary m, t_data *info) //检查四周是不是1 有没有出口�
 			e_exit (ERR_MAP);
 		i ++;
 	}
-	if (!m_grep(m, *info, 'E') || !m_grep(m, *info, 'P'))
+	if (!m_grep(m, *info, 'E') || !m_grep(m, *info, 'P')
+		|| !m_grep(m, *info, '0') || !m_grep(m, *info, 'C'))
 		e_exit (ERR_MAP);
-	info->ctr_x = m_grep(m, *info, 'P')->x; // 这里更新了人物初始的坐标位置
+	info->ctr_x = m_grep(m, *info, 'P')->x;
 	info->ctr_y = m_grep(m, *info, 'P')->y;
 	return (TRUE);
 }
 
-t_pos	*m_grep(t_ary m, t_data info, char c) // 返回第一个找到的对应值的坐标
+t_pos	*m_grep(t_ary m, t_data info, char c)
 {
 	int		i;
 	int		j;

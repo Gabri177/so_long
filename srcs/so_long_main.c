@@ -6,18 +6,15 @@
 /*   By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 21:42:17 by yugao             #+#    #+#             */
-/*   Updated: 2024/02/20 23:15:06 by yugao            ###   ########.fr       */
+/*   Updated: 2024/02/23 19:36:38 by yugao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../header/so_long.h"
 
-//info_init使用前必须运行r_size使得窗口大小能够更新到info变量中 否则会出错
 void	info_init(t_data *info)
 {
 	info->mlx = mlx_init();
-	//info->win_x = wx * UNI;
-	//info->win_y = wy * UNI;
 	info->win = mlx_new_window(info->mlx, info->win_x,
 			info->win_y, "MinilibX Window");
 	info->ctr_x = 0;
@@ -45,13 +42,13 @@ int	key_hook(int key, void *param)
 	t_data	*info;
 
 	info = (t_data *)param;
-	if (key == 13 || key == 126) //up
+	if (key == 13 || key == 126)
 		dw_mov(info, info->ctr_x, info->ctr_y - 1, &info->mrx);
-	if (key == 1 || key == 125) //down
+	if (key == 1 || key == 125)
 		dw_mov(info, info->ctr_x, info->ctr_y + 1, &info->mrx);
-	if (key == 0 || key == 123) //left
+	if (key == 0 || key == 123)
 		dw_mov(info, info->ctr_x - 1, info->ctr_y, &info->mrx);
-	if (key == 2 || key == 124) //right
+	if (key == 2 || key == 124)
 		dw_mov(info, info->ctr_x + 1, info->ctr_y, &info->mrx);
 	if (key == 53)
 		s_exit (SCS_EXE);
@@ -65,27 +62,42 @@ int	cls_win(void *param)
 	return (0);
 }
 
-int	main(void)
+static void	invalid_line_check(int fd)
+{
+	char	*line;
+
+	line = get_next_line (fd);
+	if (!line)
+		e_exit (ERR_RED);
+	while (*line == '\n')
+		line = get_next_line (fd);
+	while (line && *line != '\n')
+		line = get_next_line (fd);
+	while (line)
+	{
+		if (*line != '\n')
+			e_exit (ERR_MAP);
+		line = get_next_line (fd);
+	}
+	close (fd);
+}
+
+int	main(int arc, char **argv)
 {
 	t_data	info;
-	char	dir[] = "./maps/map4.ber";
 
-	r_size (&info, r_fd (dir)); //获取窗口大小将窗口大小数据更新到info中  先检查这玩意是不是方的
-	info_init (&info); // 初始化info变量中的其他内容
-	m_init (&info.mrx, info); // 创建一个横纵坐标的二位nodo的变量
-	r_to_mrx (&info, r_fd (dir), &info.mrx); //将地图数据转换为2维度数组
-	//m_print (info.mrx, info, TRUE); //打印数组的命令
-	//m_print (info.mrx, info, FALSE);
-	//dw_bk (info, mrx); // 画背景, 里面自动换算长度和位置 就是已经和UNIDAD进行过运算了;
-	//mlx_loop_hook(info.mlx, (int (*)())timer_handler, &info);
-	//printf ("x :%d, y: %d\n", info.ctr_x, info.ctr_y);
-	
+	if (arc != 2)
+		e_exit (ERR_ARG);
+	if (!ft_strnstr (argv[1], ".ber", ft_strlen (argv[1])))
+		e_exit (ERR_ARG);
+	invalid_line_check (r_fd (argv[1]));
+	r_size (&info, r_fd (argv[1]));
+	info_init (&info);
+	m_init (&info.mrx, info);
+	r_to_mrx (&info, r_fd (argv[1]), &info.mrx);
 	dw_mov(&info, info.ctr_x, info.ctr_y, &info.mrx);
-	/*dw_mov(&info, info.ctr_x + 1, info.ctr_y, &info.mrx);
-	dw_mov(&info, info.ctr_x + 1, info.ctr_y, &info.mrx); */
 	mlx_key_hook (info.win, key_hook, (void *)&info);
 	mlx_hook (info.win, 17, 0, cls_win, NULL);
-	//m_clr (&info.mrx, info); // 释放数组占用的内存
 	mlx_loop (info.mlx);
 	return (0);
 }

@@ -6,11 +6,11 @@
 /*   By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:07:16 by yugao             #+#    #+#             */
-/*   Updated: 2024/02/20 22:54:32 by yugao            ###   ########.fr       */
+/*   Updated: 2024/02/23 19:40:05 by yugao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../header/so_long.h"
 
 int	r_fd(char *dir)
 {
@@ -24,20 +24,25 @@ int	r_fd(char *dir)
 
 static t_bool	r_str_leg(char *str)
 {
-	size_t	i;
+	size_t		i;
+	static int	num_p;
 
 	i = 0;
 	while (i < ft_strlen (str))
 	{
+		if (str[i] == 'P')
+			num_p ++;
 		if (str[i] != '1' && str[i] != '0' && str[i] != 'P'
 			&& str[i] != 'C' && str[i] != 'E' && str[i] != '\n')
+			return (FALSE);
+		if (num_p > 1)
 			return (FALSE);
 		i ++;
 	}
 	return (TRUE);
 }
 
-static size_t	r_len(char *str) // +++++++看看有没有非法字符
+static size_t	r_len(char *str)
 {
 	int	i;
 
@@ -60,7 +65,7 @@ t_bool	r_size(t_data *info, int fd)
 	char				*line;
 
 	line = get_next_line (fd);
-	if (!line)
+	if (!line || *line == '\n')
 		e_exit (ERR_RED);
 	w = r_len (line);
 	h ++;
@@ -102,7 +107,7 @@ t_bool	r_to_mrx(t_data *info, int fd, t_ary *m)
 		y ++;
 	}
 	close (fd);
-	m_check (*m, info); // 这里我们检查 四个边是不是都是1 以及是否存在出口和角色 这里也给初始人物位置赋值
+	m_check (*m, info);
 	m_can_out (m, info->ctr_x, info->ctr_y);
 	m_check_out (*m, *info);
 	return (TRUE);

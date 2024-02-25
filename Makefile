@@ -6,11 +6,11 @@
 #    By: yugao <yugao@student.42madrid.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/16 21:42:20 by yugao             #+#    #+#              #
-#    Updated: 2024/02/20 03:44:30 by yugao            ###   ########.fr        #
+#    Updated: 2024/02/23 19:35:28 by yugao            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CFILE = so_long_main.c draw.c matrix.c read_map.c error.c matrix2.c
+CFILE = $(addprefix ./srcs/, so_long_main.c draw.c matrix.c read_map.c error.c matrix2.c)
 OFILE = $(CFILE:.c=.o)
 CFLAG = -Wall -Wextra -Werror
 LDFLAGS = -framework OpenGL -framework AppKit
@@ -20,7 +20,7 @@ NAME = so_long
 all:libft $(NAME)
 
 $(NAME):$(OFILE)
-	gcc $(OFILE) $(LIBS) -L libft -lft $(LDFLAGS)  -o $@
+	gcc $(OFILE) $(LIBS)  -fsanitize=address -L libft -lft $(LDFLAGS)  -o $@
 
 %.o:%.c
 	gcc $(CFLAG) -c -Imlx $< -o $@
