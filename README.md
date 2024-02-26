@@ -85,16 +85,16 @@ Collision Detection: Implement logic to detect collisions with walls, collectibl
 ## Getting Started
 
 * Clone the Repository: Clone this project to your local machine using Git.
-```
-git clone https://github.com/Gabri177/so_long
+```bash
+git clone https://github.com/Gabri177/so_long.git
 ```
 * Compile the Project: Navigate to the project directory and run the make command to compile the project.
-```
+```bash
 cd so_long
 make
 ```
 * Run the Game: After compilation, start the game by running the executable with a map file.
-```
+```bash
 ./so_long maps/map.ber
 ```
 ## Contribution
